@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exam Saathi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap">
+<style id="css">
+:root{--bg:#f3f5fb;--surface:#fff;--ink:#14183a;--muted:#5b6188;--line:#d9ddef;--brand:#2b3a9e;--brand-ink:#fff;--mark:#ffd23f;--ok:#0d7a47;--okbg:#dcf5e8;--bad:#b3261e;--badbg:#fde4e2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1226;--surface:#181c3a;--ink:#eceefb;--muted:#9aa0cc;--line:#2c3260;--brand:#8c9bff;--brand-ink:#0f1226;--ok:#5fd59b;--okbg:#12382a;--bad:#ff8a80;--badbg:#3d1a19}}
+:root[data-theme="dark"]{--bg:#0f1226;--surface:#181c3a;--ink:#eceefb;--muted:#9aa0cc;--line:#2c3260;--brand:#8c9bff;--brand-ink:#0f1226;--ok:#5fd59b;--okbg:#12382a;--bad:#ff8a80;--badbg:#3d1a19}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Mukta",system-ui,sans-serif;font-size:17px;line-height:1.55}
+.wrap{max-width:640px;margin:0 auto;padding:16px 16px 96px}
+h1{font-size:28px;font-weight:800;margin:8px 0 2px}
+h1 span{background:linear-gradient(transparent 55%,var(--mark) 55%);padding:0 4px}
+h2{font-size:20px;margin:20px 0 8px}
+.sub{color:var(--muted);margin:0 0 16px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;padding:12px 4px;cursor:pointer;border-top:3px solid transparent}
+nav button[aria-selected="true"]{color:var(--brand);border-top-color:var(--brand)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:6px}
+.q{font-size:19px;font-weight:600;margin:0 0 12px}
+.opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:12px 14px;margin-bottom:8px;font:inherit;cursor:pointer}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt:disabled{cursor:default}
+.exp{border-left:4px solid var(--mark);padding:8px 12px;margin:12px 0;background:var(--bg);border-radius:0 8px 8px 0}
+.primary{border:0;background:var(--brand);color:var(--brand-ink);font:inherit;font-weight:600;border-radius:10px;padding:12px 20px;cursor:pointer;width:100%}
+.primary:disabled{opacity:.45;cursor:default}
+.ghost{border:1px solid var(--line);background:none;color:var(--bad);font:inherit;border-radius:8px;padding:4px 10px;cursor:pointer;flex:none}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pdf a{flex:none;border-radius:8px;padding:8px 14px;font-weight:600;text-decoration:none;background:var(--brand);color:var(--brand-ink)}
+.pdf h3,.ca h3{margin:0 0 2px;font-size:18px}
+.tag{display:inline-block;background:var(--mark);color:#14183a;border-radius:6px;padding:0 8px;font-size:13px;font-weight:600;margin-right:6px}
+.score{font-size:44px;font-weight:800;margin:4px 0}
+.note{color:var(--muted);font-size:14px}
+input,textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px;margin-bottom:8px}
+textarea{min-height:120px}
+.bar{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:4}
+.msg{color:var(--bad);font-size:15px;margin:4px 0 8px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script id="data" type="application/json">{"q": [{"s": "राजनीति", "q": "भारत के संविधान का अनुच्छेद 21 किससे संबंधित है?", "o": ["समानता का अधिकार", "जीवन और व्यक्तिगत स्वतंत्रता की रक्षा", "धर्म की स्वतंत्रता", "शिक्षा का अधिकार"], "a": 1, "e": "अनुच्छेद 21 जीवन और व्यक्तिगत स्वतंत्रता की रक्षा करता है।"}, {"s": "राजनीति", "q": "मूल कर्तव्य (Fundamental Duties) किस संशोधन द्वारा जोड़े गए?", "o": ["42वां", "44वां", "52वां", "73वां"], "a": 0, "e": "मूल कर्तव्य 42वें संशोधन (1976) द्वारा जोड़े गए।"}, {"s": "राजनीति", "q": "राज्य के राज्यपाल की नियुक्ति कौन करता है?", "o": ["प्रधानमंत्री", "मुख्यमंत्री", "राष्ट्रपति", "मुख्य न्यायाधीश"], "a": 2, "e": "राज्यपाल की नियुक्ति राष्ट्रपति करते हैं।"}, {"s": "इतिहास", "q": "प्लासी का युद्ध किस वर्ष हुआ था?", "o": ["1757", "1764", "1857", "1699"], "a": 0, "e": "प्लासी का युद्ध 1757 में हुआ था।"}, {"s": "भूगोल", "q": "भारत के भीतर सबसे लंबी नदी कौन सी है?", "o": ["यमुना", "गोदावरी", "गंगा", "नर्मदा"], "a": 2, "e": "गंगा भारत की सबसे लंबी नदी है।"}, {"s": "विज्ञान", "q": "बल की SI इकाई क्या है?", "o": ["जूल", "न्यूटन", "वाट", "पास्कल"], "a": 1, "e": "बल की SI इकाई न्यूटन है।"}, {"s": "गणित", "q": "240 का 15% कितना होता है?", "o": ["32", "36", "40", "24"], "a": 1, "e": "240 × 15/100 = 36।"}, {"s": "तर्कशक्ति", "q": "श्रृंखला पूरी कीजिए: 2, 6, 12, 20, ?", "o": ["28", "30", "32", "24"], "a": 1, "e": "अंतर 4, 6, 8 है, अगला 10 होगा, इसलिए 20 + 10 = 30।"}, {"s": "अर्थव्यवस्था", "q": "भारतीय रिज़र्व बैंक की स्थापना किस वर्ष हुई?", "o": ["1925", "1935", "1947", "1955"], "a": 1, "e": "RBI की स्थापना 1 अप्रैल 1935 को हुई।"}, {"s": "सामान्य ज्ञान", "q": "भारत का राष्ट्रीय पशु कौन सा है?", "o": ["बाघ", "शेर", "हाथी", "तेंदुआ"], "a": 0, "e": "भारत का राष्ट्रीय पशु बाघ (रॉयल बंगाल टाइगर) है।"}], "p": [], "c": []}</script>
+<script id="app">
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let D=JSON.parse($("#data").textContent);
+let tab="q",subj="Sab",psubj="Sab",pool=[],qi=0,score=0,ans=null,admin=false,dirty=false,msg="";
+let ext=[];
+async function loadPdfJs(){
+  if(window.pdfjsLib)return window.pdfjsLib;
+  await new Promise((ok,no)=>{const e=document.createElement("script");e.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";e.onload=ok;e.onerror=no;document.head.appendChild(e)});
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  return window.pdfjsLib;
+}
+const uniq=a=>[...new Set(a)];
+const safeUrl=u=>/^(https?:\/\/|\/_blob\/)/.test(u)?u:"";
+
+function startQ(){pool=D.q.filter(x=>subj==="Sab"||x.s===subj);qi=0;score=0;ans=null}
+function chips(list,cur,a){return '<div class="chips">'+["Sab",...list].map(x=>'<button class="chip" data-act="'+a+'" data-v="'+esc(x)+'" aria-pressed="'+(x===cur)+'">'+esc(x)+'</button>').join("")+'</div>'}
+
+function vQ(){
+  let h=chips(uniq(D.q.map(x=>x.s)),subj,"subj");
+  if(!pool.length)return h+'<div class="card">Is subject mein abhi koi sawal nahi hai.</div>';
+  if(qi>=pool.length)return h+'<div class="card"><div class="meta">Abhyas poora</div><div class="score">'+score+' / '+pool.length+'</div><button class="primary" data-act="again">Dobara shuru karein</button></div>';
+  const x=pool[qi];
+  h+='<div class="card"><div class="meta">'+esc(x.s)+' &middot; Sawal '+(qi+1)+' / '+pool.length+'</div><p class="q">'+esc(x.q)+'</p>';
+  x.o.forEach((t,k)=>{const c=ans===null?"":k===x.a?" ok":k===ans?" bad":"";h+='<button class="opt'+c+'" data-act="pick" data-v="'+k+'"'+(ans!==null?" disabled":"")+'>'+esc(t)+'</button>'});
+  if(ans!==null)h+='<div class="exp"><strong>'+(ans===x.a?"Sahi jawab":"Galat jawab")+'.</strong> '+esc(x.e||"")+'</div><button class="primary" data-act="next">'+(qi+1<pool.length?"Agla sawal":"Natija dekhein")+'</button>';
+  return h+'</div>';
+}
+function vP(){
+  let h=chips(uniq(D.p.map(x=>x.s)),psubj,"psubj");
+  const l=D.p.filter(x=>psubj==="Sab"||x.s===psubj);
+  if(!l.length)return h+'<div class="card">Abhi koi PDF nahi hai. Jald aayengi.</div>';
+  return h+l.map(x=>'<div class="card pdf row"><div><div class="meta">'+esc(x.s)+'</div><h3>'+esc(x.t)+'</h3><div class="meta">'+esc(x.d)+'</div></div><a href="'+esc(x.u)+'" target="_blank" rel="noopener">Kholein</a></div>').join("");
+}
+function vC(){
+  if(!D.c.length)return '<div class="card">Aaj ki current affairs jald aayengi.</div>';
+  return D.c.map(x=>'<div class="card ca"><div class="meta"><span class="tag">'+esc(x.k)+'</span>'+esc(x.d)+'</div><h3>'+esc(x.t)+'</h3><p style="margin:6px 0 0">'+esc(x.b)+'</p></div>').join("");
+}
+function vA(){
+  let h='<div class="bar"><button class="primary" data-act="pub"'+(dirty?"":" disabled")+'>Badlav publish karein</button></div>';
+  if(msg)h+='<div class="msg">'+esc(msg)+'</div>';
+  h+='<h2>Naye sawal (bulk)</h2><p class="note">Har line mein ek sawal: Sawal | Option A | Option B | Option C | Option D | Sahi option (1-4) | Explanation. Subject pehli line mein "#Polity" likhkar chunein.</p><textarea id="bulk" placeholder="#Polity&#10;Bharat ka pehla Rashtrapati kaun tha? | Rajendra Prasad | Nehru | Radhakrishnan | Patel | 1 | Dr. Rajendra Prasad pehle Rashtrapati the."></textarea><button class="primary" data-act="addq">Sawal jodein</button>';
+  h+='<h2>PDF se sawal nikaalein</h2><p class="note">Latest exam ki PDF chunein. AI usme se MCQ nikaalega, aap jaanch kar jodein. Scanned (photo wali) PDF mein text nahi hota, wo kaam nahi karegi.</p><input id="xf" type="file" accept="application/pdf"><input id="xs" placeholder="Subject (khali chhodein to AI khud tay karega)"><button class="primary" data-act="xrun">Sawal nikaalein</button>';
+  if(ext.length){h+='<div class="meta" style="margin-top:12px">'+ext.length+' sawal mile. Jawab zaroor jaanchein, phir jodein.</div>'+ext.map((x,i)=>'<div class="card"><label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" style="width:auto;margin:6px 0 0" data-act="xt" data-i="'+i+'"'+(x.on?" checked":"")+'><span><div class="meta">'+esc(x.s)+'</div>'+esc(x.q)+'<br><span class="note">'+x.o.map((t,k)=>(k===x.a?"\u2713 ":"")+esc(t)).join(" &middot; ")+'</span><br><span class="note">'+esc(x.e)+'</span></span></label></div>').join("")+'<button class="primary" data-act="xadd">Chune hue sawal jodein</button>';}
+  h+='<h2>Nayi PDF</h2><input id="pt" placeholder="PDF ka naam"><input id="ps" placeholder="Subject (jaise Polity)"><input id="pd" placeholder="Chhota vivaran"><input id="pu" placeholder="PDF ka link (ya neeche se file chunein)"><input id="pf" type="file" accept="application/pdf"><button class="primary" data-act="addp">PDF jodein</button>';
+  h+='<h2>Nayi current affairs</h2><input id="ck" placeholder="Category (National, Economy...)"><input id="ct" placeholder="Headline"><textarea id="cb" placeholder="Saransh (2-3 line)"></textarea><button class="primary" data-act="addc">Jodein</button>';
+  h+='<h2>Maujooda content</h2>';
+  h+=D.q.map((x,i)=>'<div class="card row"><div><div class="meta">Sawal &middot; '+esc(x.s)+'</div>'+esc(x.q)+'</div><button class="ghost" data-act="del" data-k="q" data-i="'+i+'">Hatayein</button></div>').join("");
+  h+=D.p.map((x,i)=>'<div class="card row"><div><div class="meta">PDF</div>'+esc(x.t)+'</div><button class="ghost" data-act="del" data-k="p" data-i="'+i+'">Hatayein</button></div>').join("");
+  h+=D.c.map((x,i)=>'<div class="card row"><div><div class="meta">Current affairs</div>'+esc(x.t)+'</div><button class="ghost" data-act="del" data-k="c" data-i="'+i+'">Hatayein</button></div>').join("");
+  return h;
+}
+function render(){
+  const tabs=[["q","Sawal"],["p","PDF"],["c","Current Affairs"]];if(admin)tabs.push(["a","Admin"]);
+  const v={q:vQ,p:vP,c:vC,a:vA}[tab]();
+  $("#root").innerHTML='<div class="wrap"><h1><span>Exam Saathi</span></h1><p class="sub">SSC, Railway, Banking, UPSC ki taiyari ke liye practice, PDF aur current affairs.</p>'+v+'</div><nav role="tablist">'+tabs.map(t=>'<button role="tab" data-act="tab" data-v="'+t[0]+'" aria-selected="'+(t[0]===tab)+'">'+t[1]+'</button>').join("")+'</nav>';
+}
+const val=id=>($("#"+id)||{value:""}).value.trim();
+const act={
+  tab(d){tab=d.v;msg="";window.scrollTo(0,0);render()},
+  subj(d){subj=d.v;startQ();render()},
+  psubj(d){psubj=d.v;render()},
+  pick(d){if(ans!==null)return;ans=+d.v;if(ans===pool[qi].a)score++;render()},
+  next(){qi++;ans=null;render()},
+  again(){startQ();render()},
+  del(d){D[d.k].splice(+d.i,1);dirty=true;render()},
+  xt(d){ext[+d.i].on=!ext[+d.i].on;render()},
+  xadd(){const r=ext.filter(x=>x.on).map(({on,...z})=>z);D.q.unshift(...r);ext=[];dirty=dirty||r.length>0;msg=r.length+" sawal jude.";render()},
+  async xrun(){
+    const f=$("#xf").files[0],hint=val("xs");
+    if(!f){msg="Pehle PDF file chunein.";return render()}
+    const sm=await claude.use("sample");
+    if(!sm){msg="AI se sawal nikaalna abhi uplabdh nahi hai.";return render()}
+    try{
+      msg="PDF padh rahe hain...";render();
+      const lib=await loadPdfJs();
+      const pdf=await lib.getDocument({data:await f.arrayBuffer()}).promise;
+      let all="";
+      for(let n=1;n<=pdf.numPages;n++){const t=await (await pdf.getPage(n)).getTextContent();all+=t.items.map(i=>i.str).join(" ")+"\n"}
+      if(all.replace(/\s/g,"").length<200){msg="Is PDF mein text nahi mila (shayad scanned hai).";return render()}
+      const chunks=[];for(let i=0;i<all.length&&chunks.length<12;i+=5500)chunks.push(all.slice(i,i+6000));
+      const seen=new Set(),out=[];
+      for(let k=0;k<chunks.length;k++){
+        msg="Sawal nikal rahe hain... ("+(k+1)+"/"+chunks.length+")";render();
+        const r=await sm.json("Extract every complete multiple-choice question from the exam text below. Keep the original language (Hindi stays Hindi). Return ONLY a JSON array of objects {\"s\":subject,\"q\":question,\"o\":[exactly 4 options without labels],\"a\":index 0-3 of the correct option,\"e\":one-line explanation}. If the text has an answer key, use it; otherwise solve it yourself and start e with \"(AI anuman) \". Skip questions that are cut off or have fewer than 4 options. "+(hint?"Subject: "+hint+". ":"Infer the subject. ")+"If there are none, return [].\n\nTEXT:\n"+chunks[k]);
+        (Array.isArray(r)?r:[]).forEach(x=>{
+          if(!x||typeof x.q!=="string"||!Array.isArray(x.o)||x.o.length!==4||!(x.a>=0&&x.a<=3))return;
+          const key=x.q.replace(/\s/g,"");if(seen.has(key))return;seen.add(key);
+          out.push({s:String(x.s||hint||"General"),q:x.q,o:x.o.map(String),a:x.a|0,e:String(x.e||""),on:true});
+        });
+      }
+      ext=out;msg=out.length?"":"Koi MCQ sawal nahi mila.";
+    }catch(e){msg="Sawal nahi nikal paaye: "+((e&&(e.message||e.code))||"error");}
+    render();
+  },
+  addq(){
+    let s="General",n=0,bad=0;
+    val("bulk").split("\n").forEach(l=>{
+      l=l.trim();if(!l)return;
+      if(l[0]==="#"){s=l.slice(1).trim()||s;return}
+      const p=l.split("|").map(x=>x.trim());const a=parseInt(p[5],10);
+      if(p.length<6||p.slice(1,5).some(x=>!x)||!(a>=1&&a<=4)){bad++;return}
+      D.q.unshift({s:s,q:p[0],o:p.slice(1,5),a:a-1,e:p[6]||""});n++;
+    });
+    dirty=dirty||n>0;msg=n+" sawal jude"+(bad?", "+bad+" line galat format mein thi.":".");render();
+  },
+  async addp(){
+    const t=val("pt");let u=safeUrl(val("pu"));const f=$("#pf").files[0];
+    if(!t){msg="PDF ka naam likhein.";return render()}
+    if(f){const as=await claude.use("assets");if(!as){msg="File upload abhi uplabdh nahi hai, link use karein.";return render()}
+      try{u=(await as.upload(f)).url}catch(e){msg="Upload nahi hua: "+(e.message||e.code);return render()}}
+    if(!u){msg="PDF ka sahi link ya file dein.";return render()}
+    D.p.unshift({t:t,s:val("ps")||"General",d:val("pd"),u:u});dirty=true;msg="PDF jud gayi.";render();
+  },
+  addc(){
+    if(!val("ct")){msg="Headline likhein.";return render()}
+    D.c.unshift({k:val("ck")||"General",t:val("ct"),b:val("cb"),d:new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})});
+    dirty=true;msg="Current affairs jud gayi.";render();
+  },
+  async pub(){
+    const a=await claude.use("artifact");
+    if(!a){msg="Publish ki anumati nahi mili.";return render()}
+    const json=JSON.stringify(D).replace(/</g,"\\u003c");
+    const html='<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Exam Saathi</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap"><style id="css">'+$("#css").textContent+'</style></head><body><div id="root"></div><script id="data" type="application/json">'+json+'<\/script><script id="app">'+$("#app").textContent+'<\/script></body></html>';
+    try{await a.publish(html)}catch(e){if(e&&e.code!=="conflict"){msg="Publish nahi hua: "+(e.message||e.code);render()}}
+  }
+};
+$("#root").addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(b&&act[b.dataset.act])act[b.dataset.act](b.dataset)});
+startQ();render();
+(window.claude?claude.use("user"):Promise.resolve(null)).then(u=>{if(u&&u.canEdit&&u.canEdit()){admin=true;render()}}).catch(()=>{});
+</script>
+</body>
+</html>
