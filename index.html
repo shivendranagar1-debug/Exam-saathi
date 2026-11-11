@@ -6,7 +6,7 @@
 <title>Exam Saathi</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap">
 <style id="css">
-:root{--bg:#f3f5fb;--surface:#fff;--ink:#14183a;--muted:#5b6188;--line:#d9ddef;--brand:#2b3a9e;--brand-ink:#fff;--mark:#ffd23f;--ok:#0d7a47;--okbg:#dcf5e8;--bad:#b3261e;--badbg:#fde4e2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#f3f5fb;--surface:#fff;--ink:#14183a;--muted:#5b6188;--line:#d9ddef;--brand:#1a3b9c;--brand-ink:#fff;--mark:#ffd23f;--acc:#ff7a1a;--ok:#0d7a47;--okbg:#dcf5e8;--bad:#b3261e;--badbg:#fde4e2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1226;--surface:#181c3a;--ink:#eceefb;--muted:#9aa0cc;--line:#2c3260;--brand:#8c9bff;--brand-ink:#0f1226;--ok:#5fd59b;--okbg:#12382a;--bad:#ff8a80;--badbg:#3d1a19}}
 :root[data-theme="dark"]{--bg:#0f1226;--surface:#181c3a;--ink:#eceefb;--muted:#9aa0cc;--line:#2c3260;--brand:#8c9bff;--brand-ink:#0f1226;--ok:#5fd59b;--okbg:#12382a;--bad:#ff8a80;--badbg:#3d1a19}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -19,6 +19,7 @@ h2{font-size:20px;margin:20px 0 8px}
 .sub{color:var(--muted);margin:0 0 16px}
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
 nav button{flex:1;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;padding:12px 4px;cursor:pointer;border-top:3px solid transparent}
+nav button{font-size:15px}
 nav button[aria-selected="true"]{color:var(--brand);border-top-color:var(--brand)}
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px}
@@ -46,17 +47,55 @@ textarea{min-height:120px}
 .bar{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:4}
 .msg{color:var(--bad);font-size:15px;margin:4px 0 8px}
 [hidden]{display:none!important}
+nav button{font-size:12px;padding:8px 2px}nav button b{display:block;font-size:20px;font-weight:400}
+.hd{display:flex;align-items:center;gap:10px;margin-bottom:6px}.hd h1{margin:0;font-size:22px;letter-spacing:.04em;color:var(--brand)}.hd h1 span{background:none;padding:0;color:var(--acc)}.hd .tg{font-size:12px;color:var(--muted)}
+.lg{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#1a3b9c,#3560e0);display:grid;place-items:center;font-size:24px;flex:none}
+.ib{margin-left:auto;display:flex;gap:6px}.ib button{border:1px solid var(--line);background:var(--surface);border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer}
+.hero{background:linear-gradient(135deg,#12308a,#3560e0);color:#fff;border-radius:20px;padding:20px;position:relative;overflow:hidden;margin:14px 0}
+.hero h2{margin:0 0 4px;font-size:22px;max-width:70%}.hero p{margin:0 0 14px;max-width:65%;opacity:.9}.hero .ic{position:absolute;right:12px;bottom:4px;font-size:78px}
+.bo{background:var(--acc);color:#fff;border:0;border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
+.srch input{margin:0;border-radius:999px;padding:12px 18px;box-shadow:0 2px 10px rgba(26,59,156,.1)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qa,.ex,.st{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 8px rgba(26,59,156,.08);color:var(--ink);font:inherit;text-align:center}
+.qa{padding:12px 2px;font-size:13px;cursor:pointer}.qa b,.ex b{display:block;font-size:26px;font-weight:400}
+.ex{padding:12px;text-align:left}.ex button{margin-top:6px;border:1px solid var(--acc);color:var(--acc);background:none;border-radius:999px;padding:2px 14px;font:inherit;cursor:pointer}
+.sb{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 4px;font:inherit;font-size:14px;cursor:pointer}.sb b{display:block;font-size:22px;font-weight:400}
+.chal{background:linear-gradient(135deg,#ff7a1a,#ffa24d);color:#fff;border-radius:18px;padding:16px;margin-top:14px}.chal h3,.prem h3{margin:0 0 2px;font-size:19px}.chal button{background:#fff;color:#b44a00;border:0;border-radius:999px;padding:8px 18px;font:inherit;font-weight:700;cursor:pointer;margin-top:8px}
+.st{padding:10px 4px}.st b{display:block;font-size:24px;color:var(--brand)}.st span{font-size:12px;color:var(--muted)}
+.prem{background:linear-gradient(135deg,#0c1d5a,#1a3b9c);color:#fff;border-radius:18px;padding:16px;margin-top:14px}.prem ul{margin:8px 0;padding-left:18px}.prem .soon{display:inline-block;background:var(--acc);border-radius:999px;padding:4px 14px;font-weight:700}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script id="data" type="application/json">{"q": [{"s": "राजनीति", "q": "भारत के संविधान का अनुच्छेद 21 किससे संबंधित है?", "o": ["समानता का अधिकार", "जीवन और व्यक्तिगत स्वतंत्रता की रक्षा", "धर्म की स्वतंत्रता", "शिक्षा का अधिकार"], "a": 1, "e": "अनुच्छेद 21 जीवन और व्यक्तिगत स्वतंत्रता की रक्षा करता है।"}, {"s": "राजनीति", "q": "मूल कर्तव्य (Fundamental Duties) किस संशोधन द्वारा जोड़े गए?", "o": ["42वां", "44वां", "52वां", "73वां"], "a": 0, "e": "मूल कर्तव्य 42वें संशोधन (1976) द्वारा जोड़े गए।"}, {"s": "राजनीति", "q": "राज्य के राज्यपाल की नियुक्ति कौन करता है?", "o": ["प्रधानमंत्री", "मुख्यमंत्री", "राष्ट्रपति", "मुख्य न्यायाधीश"], "a": 2, "e": "राज्यपाल की नियुक्ति राष्ट्रपति करते हैं।"}, {"s": "इतिहास", "q": "प्लासी का युद्ध किस वर्ष हुआ था?", "o": ["1757", "1764", "1857", "1699"], "a": 0, "e": "प्लासी का युद्ध 1757 में हुआ था।"}, {"s": "भूगोल", "q": "भारत के भीतर सबसे लंबी नदी कौन सी है?", "o": ["यमुना", "गोदावरी", "गंगा", "नर्मदा"], "a": 2, "e": "गंगा भारत की सबसे लंबी नदी है।"}, {"s": "विज्ञान", "q": "बल की SI इकाई क्या है?", "o": ["जूल", "न्यूटन", "वाट", "पास्कल"], "a": 1, "e": "बल की SI इकाई न्यूटन है।"}, {"s": "गणित", "q": "240 का 15% कितना होता है?", "o": ["32", "36", "40", "24"], "a": 1, "e": "240 × 15/100 = 36।"}, {"s": "तर्कशक्ति", "q": "श्रृंखला पूरी कीजिए: 2, 6, 12, 20, ?", "o": ["28", "30", "32", "24"], "a": 1, "e": "अंतर 4, 6, 8 है, अगला 10 होगा, इसलिए 20 + 10 = 30।"}, {"s": "अर्थव्यवस्था", "q": "भारतीय रिज़र्व बैंक की स्थापना किस वर्ष हुई?", "o": ["1925", "1935", "1947", "1955"], "a": 1, "e": "RBI की स्थापना 1 अप्रैल 1935 को हुई।"}, {"s": "सामान्य ज्ञान", "q": "भारत का राष्ट्रीय पशु कौन सा है?", "o": ["बाघ", "शेर", "हाथी", "तेंदुआ"], "a": 0, "e": "भारत का राष्ट्रीय पशु बाघ (रॉयल बंगाल टाइगर) है।"}], "p": [], "c": []}</script>
+<script id="data" type="application/json">{"q": [{"s": "राजनीति", "q": "भारत के संविधान का अनुच्छेद 21 किससे संबंधित है?", "o": ["समानता का अधिकार", "जीवन और व्यक्तिगत स्वतंत्रता की रक्षा", "धर्म की स्वतंत्रता", "शिक्षा का अधिकार"], "a": 1, "e": "अनुच्छेद 21 जीवन और व्यक्तिगत स्वतंत्रता की रक्षा करता है।"}, {"s": "राजनीति", "q": "मूल कर्तव्य (Fundamental Duties) किस संशोधन द्वारा जोड़े गए?", "o": ["42वां", "44वां", "52वां", "73वां"], "a": 0, "e": "मूल कर्तव्य 42वें संशोधन (1976) द्वारा जोड़े गए।"}, {"s": "राजनीति", "q": "राज्य के राज्यपाल की नियुक्ति कौन करता है?", "o": ["प्रधानमंत्री", "मुख्यमंत्री", "राष्ट्रपति", "मुख्य न्यायाधीश"], "a": 2, "e": "राज्यपाल की नियुक्ति राष्ट्रपति करते हैं।"}, {"s": "इतिहास", "q": "प्लासी का युद्ध किस वर्ष हुआ था?", "o": ["1757", "1764", "1857", "1699"], "a": 0, "e": "प्लासी का युद्ध 1757 में हुआ था।"}, {"s": "भूगोल", "q": "भारत के भीतर सबसे लंबी नदी कौन सी है?", "o": ["यमुना", "गोदावरी", "गंगा", "नर्मदा"], "a": 2, "e": "गंगा भारत की सबसे लंबी नदी है।"}, {"s": "विज्ञान", "q": "बल की SI इकाई क्या है?", "o": ["जूल", "न्यूटन", "वाट", "पास्कल"], "a": 1, "e": "बल की SI इकाई न्यूटन है।"}, {"s": "गणित", "q": "240 का 15% कितना होता है?", "o": ["32", "36", "40", "24"], "a": 1, "e": "240 × 15/100 = 36।"}, {"s": "तर्कशक्ति", "q": "श्रृंखला पूरी कीजिए: 2, 6, 12, 20, ?", "o": ["28", "30", "32", "24"], "a": 1, "e": "अंतर 4, 6, 8 है, अगला 10 होगा, इसलिए 20 + 10 = 30।"}, {"s": "अर्थव्यवस्था", "q": "भारतीय रिज़र्व बैंक की स्थापना किस वर्ष हुई?", "o": ["1925", "1935", "1947", "1955"], "a": 1, "e": "RBI की स्थापना 1 अप्रैल 1935 को हुई।"}, {"s": "सामान्य ज्ञान", "q": "भारत का राष्ट्रीय पशु कौन सा है?", "o": ["बाघ", "शेर", "हाथी", "तेंदुआ"], "a": 0, "e": "भारत का राष्ट्रीय पशु बाघ (रॉयल बंगाल टाइगर) है।"}, {"s": "इतिहास", "q": "कृषि विकास के लिए अलग विभाग की स्थापना किस दिल्ली सुल्तान ने की थी?", "o": ["अलाउद्दीन खिलजी", "मुहम्मद बिन तुगलक", "बलबन", "फिरोज शाह तुगलक"], "a": 1, "e": "मुहम्मद बिन तुगलक ने कृषि के विकास और कृषि योग्य भूमि को बढ़ावा देने के उद्देश्य से एक अलग कृषि विभाग की स्थापना की थी। इस विभाग को दीवान-ए-कोही कहा जाता था। इसका मुख्य उद्देश्य बंजर भूमि को कृषि योग्य बनाना और किसानों को खेती के लिए प्रोत्साहित करना था।", "m": "दीवान-ए-कोही\n• स्थापना – मुहम्मद बिन तुगलक\n• संबंधित क्षेत्र – कृषि विभाग\n• उद्देश्य – कृषि का विस्तार एवं विकास\n• किसानों को खेती के लिए आर्थिक सहायता देना\n• बंजर भूमि को उपजाऊ बनाना\n\nमुहम्मद बिन तुगलक – मुख्य तथ्य\n• वास्तविक नाम – जूना खाँ\n• पिता – गयासुद्दीन तुगलक\n• वंश – तुगलक वंश\n• राजधानी परिवर्तन – दिल्ली से दौलताबाद\n• सांकेतिक मुद्रा – तांबे एवं पीतल के सिक्के\n• कृषि विभाग – दीवान-ए-कोही\n• शासनकाल – 1325–1351 ई.\n\nपरीक्षा के लिए याद रखें\n• दीवान-ए-कोही की स्थापना – मुहम्मद बिन तुगलक\n• राजधानी दिल्ली से दौलताबाद – मुहम्मद बिन तुगलक\n• सांकेतिक मुद्रा का प्रचलन – मुहम्मद बिन तुगलक\n• तुगलक वंश का संस्थापक – गयासुद्दीन तुगलक\n• तुगलक वंश का अंतिम शासक – नासिरुद्दीन महमूद शाह तुगलक\n\nट्रिक: मुहम्मद बिन तुगलक = 3 प्रमुख प्रयोग – कृषि विभाग (दीवान-ए-कोही), राजधानी परिवर्तन (दिल्ली से दौलताबाद), सांकेतिक मुद्रा (तांबे के सिक्के)", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "तृतीय आंग्ल-मराठा युद्ध कब हुआ था?", "o": ["1775–1782 ई.", "1803–1805 ई.", "1817–1818 ई.", "1857–1858 ई."], "a": 2, "e": "सही उत्तर: 1817–1818 ई.", "m": "अतिरिक्त जानकारी\n• प्रथम आंग्ल-मराठा युद्ध: 1775–1782\n• द्वितीय आंग्ल-मराठा युद्ध: 1803–1805\n• तृतीय आंग्ल-मराठा युद्ध: 1817–1818\n• इस युद्ध के बाद मराठा शक्ति का पतन हो गया।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "हड़प्पा सभ्यता की प्रसिद्ध पशुपति मुहर पर निम्नलिखित में से कौन-सा जानवर अंकित नहीं है?", "o": ["बैल", "हाथी", "बाघ", "गैंडा"], "a": 0, "e": "संभावित सही उत्तर: बैल", "m": "अतिरिक्त जानकारी\n• पशुपति मुहर मोहनजोदड़ो से प्राप्त हुई थी।\n• इसमें योग मुद्रा में एक आकृति दिखाई देती है।\n• आसपास हाथी, बाघ, गैंडा और भैंसा दर्शाए गए हैं।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "त्रिपिटक शब्द का क्या अर्थ है?", "o": ["बुद्ध की शिक्षाओं का संकलन", "तीन वेदों का संकलन", "जैन धर्म के नियम", "उपनिषदों का संग्रह"], "a": 0, "e": "सही उत्तर: बुद्ध की शिक्षाओं का संकलन", "m": "अतिरिक्त जानकारी\nत्रिपिटक के तीन भाग हैं:\n• विनय पिटक – बौद्ध संघ के नियम।\n• सुत्त पिटक – बुद्ध के उपदेश।\n• अभिधम्म पिटक – बौद्ध दर्शन एवं सिद्धांत।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "दिल्ली के महरौली में स्थित ऐतिहासिक जलाशय 'हौज-ए-शम्सी' का निर्माण किसने करवाया था?", "o": ["कुतुबुद्दीन ऐबक", "शम्सुद्दीन इल्तुतमिश", "बलबन", "रज़िया सुल्तान"], "a": 1, "e": "सही उत्तर: शम्सुद्दीन इल्तुतमिश", "m": "अतिरिक्त जानकारी\n• इल्तुतमिश गुलाम वंश का शासक था।\n• कुतुब मीनार का निर्माण कार्य भी उसने पूरा करवाया।\n• चाँदी का टंका और ताँबे का जीतल प्रचलित किए।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "शाहनामा की रचना किसने की थी?", "o": ["फिरदौसी", "अमीर खुसरो", "अलबरूनी", "उत्बी"], "a": 0, "e": "सही उत्तर: फिरदौसी", "m": "अतिरिक्त जानकारी\n• फिरदौसी फारसी के प्रसिद्ध कवि थे।\n• शाहनामा को Book of Kings कहा जाता है।\n• यह फारस के राजाओं का महाकाव्यात्मक इतिहास है।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "अकबर के शासनकाल के शुरुआती वर्षों में बैरम खाँ ने मुगल साम्राज्य में किस पद पर कार्य किया था?", "o": ["संरक्षक / रीजेंट (Regent)", "मीर बख्शी", "सदर-उस-सुदूर", "दीवान-ए-अर्ज़"], "a": 0, "e": "सही उत्तर: संरक्षक / रीजेंट (Regent)", "m": "अतिरिक्त जानकारी\n• अकबर 1556 ई. में गद्दी पर बैठा।\n• बैरम खाँ ने शुरुआती वर्षों में शासन का संचालन किया।\n• 1556 ई. में पानीपत का द्वितीय युद्ध अकबर की ओर से बैरम खाँ के नेतृत्व में लड़ा गया।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "गौतम बुद्ध के समकालीन निम्नलिखित चिकित्सकों में से कौन था?", "o": ["जीवक (Jivaka)", "चरक", "सुश्रुत", "धन्वंतरि"], "a": 0, "e": "सही उत्तर: जीवक (Jivaka)", "m": "अतिरिक्त जानकारी\n• जीवक गौतम बुद्ध के समकालीन प्रसिद्ध चिकित्सक थे।\n• वे मगध के राजा बिंबिसार के राजवैद्य भी थे।\n• उन्होंने तक्षशिला में चिकित्सा की शिक्षा प्राप्त की थी।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "किस गुप्त शासक ने 'महेंद्रादित्य' की उपाधि धारण की थी?", "o": ["चंद्रगुप्त द्वितीय", "समुद्रगुप्त", "स्कंदगुप्त", "कुमारगुप्त प्रथम"], "a": 3, "e": "सही उत्तर: कुमारगुप्त प्रथम", "m": "अतिरिक्त जानकारी\n• कुमारगुप्त प्रथम का शासनकाल लगभग 415–455 ई. था।\n• उसने नालंदा विश्वविद्यालय की स्थापना से संबंधित परंपरा में महत्वपूर्ण स्थान पाया है।\n• उसकी उपाधि महेंद्रादित्य थी।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "इतिहास", "q": "बौद्ध धर्म की निम्नलिखित शिक्षाओं 'सर्वं दुःखम्, सर्वं अनित्यम्, सर्वं अनात्मन्' का क्या अर्थ है?", "o": ["संसार दुखमय, अनित्य और अनात्म है।", "संसार सुखमय और नित्य है।", "आत्मा अमर है।", "संसार माया है।"], "a": 0, "e": "सही उत्तर: संसार दुखमय, अनित्य और अनात्म है।", "m": "अतिरिक्त जानकारी\n• सर्वं दुःखम् = सब कुछ दुखमय है।\n• सर्वं अनित्यम् = सब कुछ अस्थायी है।\n• सर्वं अनात्मन् = कोई स्थायी आत्मा नहीं है।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "भूगोल", "q": "निम्नलिखित में से कौन-सी मिट्टी जलयोजित (Hydrated) अवस्था में पीली दिखाई देती है?", "o": ["लैटेराइट मिट्टी", "काली मिट्टी", "शुष्क मिट्टी", "लाल मिट्टी"], "a": 3, "e": "सही उत्तर: लाल मिट्टी", "m": "अतिरिक्त जानकारी\n• लाल मिट्टी का लाल रंग लौह ऑक्साइड के कारण होता है।\n• लैटेराइट मिट्टी में लौह एवं एल्युमिनियम की मात्रा अधिक होती है।\n• काली मिट्टी कपास की खेती के लिए प्रसिद्ध है।\n• जलयोजित लौह ऑक्साइड के कारण लाल मिट्टी पीली दिखाई दे सकती है।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "भूगोल", "q": "निम्नलिखित में से किस समूह में केवल जैविक संसाधन (Biotic Resources) शामिल हैं?", "o": ["चट्टानें, मिट्टी और खनिज", "लोहा, तांबा और चूना पत्थर", "वन, जानवर और मछलियाँ"], "a": 2, "e": "सही उत्तर: वन, जानवर और मछलियाँ", "m": "अतिरिक्त जानकारी\n• जैविक संसाधन: जीवित चीजों से प्राप्त संसाधन।\n• अजैविक संसाधन: निर्जीव चीजों से प्राप्त संसाधन।\n• वन, पशु, मछली, मनुष्य जैविक संसाधन हैं।\n• जल, वायु, मिट्टी, चट्टानें अजैविक संसाधन हैं।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "भूगोल", "q": "वर्ष 2011 की जनगणना के अनुसार भारत के किस राज्य में जनसंख्या घनत्व सबसे कम दर्ज किया गया था?", "o": ["नागालैंड", "अरुणाचल प्रदेश", "सिक्किम", "मिजोरम"], "a": 1, "e": "सही उत्तर: अरुणाचल प्रदेश", "m": "अतिरिक्त जानकारी\n• 2011 में अरुणाचल प्रदेश का जनसंख्या घनत्व 17 व्यक्ति प्रति वर्ग किमी था।\n• बिहार का जनसंख्या घनत्व 1,106 व्यक्ति प्रति वर्ग किमी था।\n• भारत का औसत जनसंख्या घनत्व 382 व्यक्ति प्रति वर्ग किमी था।", "x": "MP SI 3 Nov 1st Shift"}, {"s": "भूगोल", "q": "मध्य उच्चभूमि (Central Highlands) के पूर्वी विस्तार को किस नाम से जाना जाता है?", "o": ["दक्कन और तेलंगाना के पठार", "मालवा और बुंदेलखंड के पठार", "मालवा और दक्कन के पठार", "बुंदेलखंड और बघेलखंड के पठार"], "a": 3, "e": "सही उत्तर: बुंदेलखंड और बघेलखंड के पठार", "m": "अतिरिक्त जानकारी\n• मध्य उच्चभूमि नर्मदा नदी के उत्तर में स्थित है।\n• मालवा का पठार मध्य उच्चभूमि का प्रमुख भाग है।\n• बुंदेलखंड और बघेलखंड इसके पूर्वी विस्तार में आते हैं।\n• मध्य उच्चभूमि प्रायद्वीपीय पठार का हिस्सा है।", "x": "MP SI 3 Nov 1st Shift"}], "p": [], "c": [{"k": "पुस्तक", "t": "संस्मरण 'बिलॉन्गिंग: अ जर्नी ऑफ लव'", "b": "प्रश्न: हाल ही में चर्चा में रहे संस्मरण 'बिलॉन्गिंग: अ जर्नी ऑफ लव' का संबंध किससे है?\nउत्तर: सोनिया गांधी\n\nस्पष्टीकरण:\n• इस पुस्तक का प्रकाशन 'हार्परकॉलिन्स इंडिया' द्वारा किया गया है।\n• इसमें सोनिया गांधी के इटली में जन्म, भारत में शादी, निजी नुकसान (राजीव गांधी जी का निधन) और भारतीय राजनीति के सफर का वर्णन किया गया है।", "d": "11 नवंबर 2026"}, {"k": "अंतरराष्ट्रीय", "t": "रूस-यूक्रेन संघर्ष और त्रिपक्षीय बातचीत", "b": "प्रश्न: रूस-यूक्रेन संघर्ष को समाप्त करने के लिए यूएसए, यूक्रेन और रूस की दो दिवसीय बातचीत कहाँ शुरू हुई है?\nउत्तर: अबू धाबी (UAE)\n\nस्पष्टीकरण:\n• युद्ध विराम और त्रिपक्षीय वार्ता का मुख्य उद्देश्य यह सुनिश्चित करना है कि भविष्य में पुनः युद्ध शुरू न हो।\n• इस बैठक का नेतृत्व जैरेड कुशनर और स्टीव विटकॉफ द्वारा किया गया।\n• मुख्य मुद्दे: डोनेट्स्क, लुहांस्क, खेरसॉन क्षेत्र तथा यूक्रेन के नाटो (NATO) में शामिल न होने से संबंधित।", "d": "11 नवंबर 2026"}, {"k": "पुरस्कार", "t": "बुकर पुरस्कार 2026", "b": "प्रश्न: हाल ही में बुकर पुरस्कार 2026 से किस लेखक को सम्मानित किया गया है?\nउत्तर: एम. जॉन हैरिसन\n\nस्पष्टीकरण:\n• यह पुरस्कार लंदन में प्रदान किया जाता है, इसकी शुरुआत 1969 में हुई थी। यह अंग्रेजी में लिखी गई और यूके में प्रकाशित पुस्तक को मिलता है।\n• उन्हें यह पुरस्कार उपन्यास 'द एंड ऑफ एवरीथिंग' (The End of Everything) के लिए मिला है, जिसका अर्थ 'प्रलय के बाद दुनिया' है।\n• 81 वर्ष की आयु में यह पुरस्कार पाने वाले वे सबसे उम्रदराज लेखक हैं।", "d": "11 नवंबर 2026"}, {"k": "खेल", "t": "भारत के 100वें शतरंज ग्रैंडमास्टर", "b": "प्रश्न: हाल ही में भारत के 100वें शतरंज ग्रैंडमास्टर बनने की उपलब्धि किसने हासिल की है?\nउत्तर: अनुज श्रीवात्री (मध्य प्रदेश)\n\nस्पष्टीकरण:\n• भारत के पहले ग्रैंडमास्टर विश्वनाथन आनंद (1988) थे।\n• अनुज श्रीवात्री मध्य प्रदेश के पहले शतरंज ग्रैंडमास्टर बने हैं।\n• हाल की महिलाओं में नवीनतम ग्रैंडमास्टर दिव्या देशमुख हैं।", "d": "11 नवंबर 2026"}, {"k": "सम्मेलन", "t": "ICAPP का सम्मेलन", "b": "प्रश्न: इंटरनेशनल कॉन्फ्रेंस ऑफ एशियन पॉलिटिकल पार्टीज़ (ICAPP) का सम्मेलन हाल ही में कहाँ आयोजित हुआ है?\nउत्तर: सियोल, दक्षिण कोरिया\n\nस्पष्टीकरण:\n• यह इसका 46वां सम्मेलन था। इसमें 'सियोल घोषणापत्र' जारी किया गया जो संप्रभुता, एकता और अखंडता पर आधारित है।\n• इससे पहले 2024 में वियतनाम (डोंग) और 2025 में नोमपेन्ह (कंबोडिया) में आयोजित हुआ था।", "d": "11 नवंबर 2026"}, {"k": "खेल", "t": "तेलंगाना इंडिया इंटरनेशनल चैलेंज 2026", "b": "प्रश्न: तेलंगाना इंडिया इंटरनेशनल चैलेंज 2026 में पुरुष एकल का खिताब किसने जीता है?\nउत्तर: तुषार सुवीर\n\nस्पष्टीकरण:\n• यह प्रतियोगिता हैदराबाद में आयोजित हुई।\n• पुरुष एकल का खिताब तुषार सुवीर ने और महिला एकल का खिताब रक्षिता रामराज ने जीता है।", "d": "11 नवंबर 2026"}, {"k": "रक्षा", "t": "संयुक्त नौसैनिक अभ्यास 'नसीम अल बहर'", "b": "प्रश्न: भारतीय नौसेना ने किस देश के साथ संयुक्त नौसैनिक अभ्यास 'नसीम अल बहर' का 15वां संस्करण प्रारंभ किया है?\nउत्तर: ओमान\n\nस्पष्टीकरण:\n• यह अभ्यास ओमान के दुक्कम बंदरगाह पर आयोजित हुआ, जिसमें भारत की ओर से INS सूरत ने हिस्सा लिया।\n• भारत और ओमान के बीच होने वाले अन्य अभ्यास 'अल-नगाह' और 'इस्टर्न ब्रिज' हैं।", "d": "11 नवंबर 2026"}, {"k": "संस्कृति", "t": "गुजराती नव वर्ष 'बेस्तु वरस'", "b": "प्रश्न: 10 नवंबर को 'बेस्तु वरस' नव वर्ष कहाँ मनाया गया है?\nउत्तर: गुजरात\n\nस्पष्टीकरण:\n• यह कार्तिक माह में दीपावली के अगले दिन (पड़वा) मनाया जाता है।\n• यह विक्रम संवत 2083 के शुरुआत का प्रतीक है।", "d": "11 नवंबर 2026"}, {"k": "स्वास्थ्य", "t": "शिगेला संक्रमण", "b": "प्रश्न: केरलम में शिगेला के मामले सामने आने के बाद स्वास्थ्य अलर्ट जारी किया गया है। शिगेला का संबंध किससे है?\nउत्तर: जीवाणु (Bacteria)\n\nस्पष्टीकरण:\n• यह केरल के मलप्पुरम जिले में पाया गया।\n• यह छड़ के आकार का बैक्टीरिया है जिससे 'शिगलोसिस' (पेचिश) नामक बीमारी होती है, जो मुख्य रूप से आंत को प्रभावित करती है।\n• यह दूषित पानी और भोजन से फैलता है।", "d": "11 नवंबर 2026"}, {"k": "राष्ट्रीय", "t": "रानिवास टीला", "b": "प्रश्न: किस राज्य के प्राचीन 'रानिवास टीले' को राष्ट्रीय महत्व का स्थल घोषित किया गया है?\nउत्तर: बिहार\n\nस्पष्टीकरण:\n• यह बिहार के पूर्वी चंपारण जिले में स्थित है।\n• इसे 1958 अधिनियम के तहत राष्ट्रीय महत्व का स्मारक घोषित किया गया है।\n• नियम के अनुसार इस स्मारक के चारों तरफ 100 मीटर का दायरा 'प्रोहिबिशन जोन' (निषेध क्षेत्र) होता है।", "d": "11 नवंबर 2026"}, {"k": "नियुक्ति", "t": "NCLAT के अध्यक्ष", "b": "प्रश्न: नेशनल कंपनी लॉ अपीलेट ट्रिब्यूनल (NCLAT) का अध्यक्ष किसे नियुक्त किया गया है?\nउत्तर: राजेश बिंदल (सुप्रीम कोर्ट के पूर्व जस्टिस)\n\nस्पष्टीकरण:\n• कंपनी अधिनियम, 2013 की धारा 410 के तहत इसका गठन किया गया है।\n• यह कंपनी मामलों से जुड़े विवादों के लिए एक अपीलीय प्राधिकरण है।", "d": "11 नवंबर 2026"}, {"k": "पर्यटन", "t": "ग्लोबल बीच इंडेक्स 2026", "b": "प्रश्न: 'बीच डॉट कॉम' के 'ग्लोबल बीच इंडेक्स 2026' में शामिल होने वाला इकलौता एशियाई बीच कौन सा है?\nउत्तर: पालोलेम बीच, गोवा\n\nस्पष्टीकरण:\n• इसे विश्व स्तर पर छठा स्थान मिला है।\n• यह अर्धचंद्राकार सफेद रेत वाला बीच है और इस वैश्विक सूची में शामिल होने वाला एकमात्र एशियाई बीच है।", "d": "11 नवंबर 2026"}, {"k": "संस्कृति", "t": "शाक्यमुनि बुद्ध के पवित्र अवशेष (तवांग मठ)", "b": "प्रश्न: तवांग मठ में शाक्यमुनि बुद्ध के पवित्र अवशेषों की प्रदर्शनी कहाँ आयोजित की गई?\nउत्तर: अरुणाचल प्रदेश (तवांग मठ)\n\nस्पष्टीकरण:\n• संस्कृति मंत्रालय, अरुणाचल प्रदेश सरकार और इंटरनेशनल बुद्धिस्ट कॉन्फेडरेशन के सहयोग से यह सात दिवसीय प्रदर्शनी आयोजित हुई, जिसमें लगभग 31,000 श्रद्धालुओं ने दर्शन किए।\n• अवशेषों को नई दिल्ली के राष्ट्रीय संग्रहालय से लाया गया था, जिन्हें आगे बोमडिला (TGL मठ) और नामसाई (गोल्डन पैगोडा) ले जाया जाएगा।", "d": "11 नवंबर 2026"}, {"k": "सम्मेलन", "t": "19वां प्रवासी भारतीय दिवस सम्मेलन 2027", "b": "प्रश्न: 19वां प्रवासी भारतीय दिवस सम्मेलन, 2027 कहाँ आयोजित होगा?\nउत्तर: भोपाल", "d": "11 नवंबर 2026"}, {"k": "अंतरराष्ट्रीय", "t": "'अल अलामीन संयुक्त घोषणापत्र'", "b": "प्रश्न: 'अल अलामीन संयुक्त घोषणापत्र' का संबंध किससे है?\nउत्तर: भूमध्य सागर\n\nस्पष्टीकरण:\n• यह सामयिक घटनाक्रम से जुड़ा एक भू-राजनीतिक समझौता और घोषणापत्र है, जो प्रतियोगी परीक्षाओं की दृष्टि से महत्वपूर्ण है।", "d": "11 नवंबर 2026"}]}</script>
 <script id="app">
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let D=JSON.parse($("#data").textContent);
-let tab="q",subj="Sab",psubj="Sab",pool=[],qi=0,score=0,ans=null,admin=false,dirty=false,msg="";
-let ext=[];
+let tab="h",xn="",rt="",subj="Sab",psubj="Sab",pool=[],qi=0,score=0,ans=null,admin=false,dirty=false,msg="";
+let ext=[],exam=null,esub=null;
+const SUBJ=[["📖","सामान्य ज्ञान","GK",["सामान्य ज्ञान"]],["🔬","सामान्य विज्ञान","Science",["विज्ञान"]],["➗","गणित","Maths",["गणित"]],["🧩","तर्कशक्ति","Reasoning",["तर्क"]],["🔤","English","English",["English"]],["✍️","हिंदी","Hindi",["हिंदी","Hindi"]]];
+const EXS=[["🚆","Railway NTPC"],["📝","SSC CGL"],["🗂️","SSC CHSL"],["🛡️","SSC GD"],["👮","Delhi Police"],["🚓","MP Police"],["🏛️","MPESB"],["📚","Other Exams"]];
+function ST(){try{return Object.assign({t:0,sv:0,ok:0,st:0,last:""},JSON.parse(localStorage.getItem("es_st")||"{}"))}catch(e){return{t:0,sv:0,ok:0,st:0,last:""}}}
+function svS(o){try{localStorage.setItem("es_st",JSON.stringify(o))}catch(e){}}
+function rec(ok){const s=ST(),d=new Date(),t=d.toDateString();s.sv++;if(ok)s.ok++;if(s.last!==t){const y=new Date(d-864e5).toDateString();s.st=s.last===y?s.st+1:1;s.last=t}svS(s)}
+function fin(){const s=ST();s.t++;svS(s)}
+function mk(title,list){pool=list;qi=0;score=0;ans=null;rt=title;tab="r"}
+function vS(){const s=ST();return '<div class="g4">'+[[s.t,"टेस्ट दिए"],[s.sv,"हल किए सवाल"],[(s.sv?Math.round(s.ok/s.sv*100):0)+"%","सटीकता"],[s.st+" 🔥","लगातार दिन"]].map(x=>'<div class="st"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join("")+'</div>'}
+function vH(){
+  return '<div class="hd"><div class="lg">🎓</div><div><h1>EXAM <span>SATHI</span></h1><div class="tg">आपका साथी, सरकारी नौकरी की तैयारी में!</div></div><div class="ib"><button data-act="go" data-v="c" aria-label="Notifications">🔔</button><button data-act="go" data-v="u" aria-label="Profile">👤</button></div></div>'
+  +'<h2 style="margin:12px 0 0">नमस्ते विद्यार्थी! 👋</h2><p class="sub" style="margin:0">आपकी सफलता की तैयारी यहीं से शुरू होती है।</p>'
+  +'<div class="hero"><h2>सपनों की नौकरी, अब होगी आपकी!</h2><p>सही तैयारी, सही मार्गदर्शन।</p><button class="bo" data-act="go" data-v="q">Start Preparation</button><div class="ic">📚</div></div>'
+  +'<div class="srch"><input id="sq" placeholder="Search Exams, Subjects, Questions..." enterkeyhint="search"></div><button class="bo" style="margin-top:8px;width:100%" data-act="search">खोजें</button>'
+  +'<h2>Quick Access</h2><div class="g4">'+[["📝","Daily Quiz","daily",""],["⏱️","Mock Test","go","x"],["🗂️","PYQ Papers","go","p"],["📰","Current Affairs","go","c"]].map(x=>'<button class="qa" data-act="'+x[2]+'" data-v="'+x[3]+'"><b>'+x[0]+'</b>'+x[1]+'</button>').join("")+'</div>'
+  +'<h2>Popular Exams</h2><div class="g2">'+EXS.map(x=>'<div class="ex"><b>'+x[0]+'</b>'+x[1]+'<br><button data-act="ex" data-v="'+x[1]+'">Explore</button></div>').join("")+'</div>'
+  +'<h2>Daily Practice</h2><div class="g3">'+SUBJ.map((x,i)=>'<button class="sb" data-act="sub" data-i="'+i+'"><b>'+x[0]+'</b>'+x[1]+'</button>').join("")+'</div>'
+  +'<div class="chal"><h3>🔥 Today\u2019s Challenge</h3>10 Questions · Test Your Knowledge<br><button data-act="daily">Start Now</button></div>'
+  +'<h2>आपका प्रदर्शन</h2>'+vS()
+  +'<div class="prem"><h3>👑 Unlock Your Full Potential</h3><ul><li>Unlimited Mock Tests</li><li>Detailed Solutions</li><li>Complete PYQ Collection</li></ul><span class="soon">Jald aa raha hai</span></div>';
+}
+function vR(){return '<button class="chip" data-act="go" data-v="h">← Home</button><h2>'+esc(rt)+'</h2>'+vQ(true)}
+function vU(){return '<h2>Profile</h2>'+vS()+'<div class="card" style="margin-top:12px"><button class="primary" data-act="theme">Light / Dark mode badlein</button></div>'+(admin?'<div class="card"><button class="primary" data-act="go" data-v="a">Admin (sawal, PDF, news jodein)</button></div>':'')+'<button class="ghost" style="width:100%;padding:10px" data-act="rst">Mera progress reset karein</button>'}
 async function loadPdfJs(){
   if(window.pdfjsLib)return window.pdfjsLib;
   await new Promise((ok,no)=>{const e=document.createElement("script");e.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";e.onload=ok;e.onerror=no;document.head.appendChild(e)});
@@ -66,18 +105,28 @@ async function loadPdfJs(){
 const uniq=a=>[...new Set(a)];
 const safeUrl=u=>/^(https?:\/\/|\/_blob\/)/.test(u)?u:"";
 
-function startQ(){pool=D.q.filter(x=>subj==="Sab"||x.s===subj);qi=0;score=0;ans=null}
+function startQ(){pool=D.q.filter(x=>!x.x&&(subj==="Sab"||x.s===subj));qi=0;score=0;ans=null}
+function startX(){pool=D.q.filter(x=>x.x===exam&&(esub==="Sab"||x.s===esub));qi=0;score=0;ans=null}
 function chips(list,cur,a){return '<div class="chips">'+["Sab",...list].map(x=>'<button class="chip" data-act="'+a+'" data-v="'+esc(x)+'" aria-pressed="'+(x===cur)+'">'+esc(x)+'</button>').join("")+'</div>'}
 
-function vQ(){
-  let h=chips(uniq(D.q.map(x=>x.s)),subj,"subj");
+function vQ(ex){
+  let h=ex?"":chips(uniq(D.q.filter(x=>!x.x).map(x=>x.s)),subj,"subj");
   if(!pool.length)return h+'<div class="card">Is subject mein abhi koi sawal nahi hai.</div>';
   if(qi>=pool.length)return h+'<div class="card"><div class="meta">Abhyas poora</div><div class="score">'+score+' / '+pool.length+'</div><button class="primary" data-act="again">Dobara shuru karein</button></div>';
   const x=pool[qi];
   h+='<div class="card"><div class="meta">'+esc(x.s)+' &middot; Sawal '+(qi+1)+' / '+pool.length+'</div><p class="q">'+esc(x.q)+'</p>';
   x.o.forEach((t,k)=>{const c=ans===null?"":k===x.a?" ok":k===ans?" bad":"";h+='<button class="opt'+c+'" data-act="pick" data-v="'+k+'"'+(ans!==null?" disabled":"")+'>'+esc(t)+'</button>'});
-  if(ans!==null)h+='<div class="exp"><strong>'+(ans===x.a?"Sahi jawab":"Galat jawab")+'.</strong> '+esc(x.e||"")+'</div><button class="primary" data-act="next">'+(qi+1<pool.length?"Agla sawal":"Natija dekhein")+'</button>';
+  if(ans!==null)h+='<div class="exp"><strong>'+(ans===x.a?"Sahi jawab":"Galat jawab")+'.</strong> '+esc(x.e||"")+'</div>'+(x.m?'<div class="exp" style="white-space:pre-line">'+esc(x.m)+'</div>':'')+'<button class="primary" data-act="next">'+(qi+1<pool.length?"Agla sawal":"Natija dekhein")+'</button>';
   return h+'</div>';
+}
+function vX(){
+  const ex=uniq(D.q.filter(x=>x.x).map(x=>x.x));
+  if(!ex.length)return '<div class="card">Abhi koi pariksha nahi hai. Jald aayegi.</div>';
+  if(!exam)return (xn?'<div class="card">'+esc(xn)+' ke sawal jald aayenge.</div>':'')+'<h2>Pariksha chunein</h2>'+ex.map(e=>{const l=D.q.filter(x=>x.x===e);return '<button class="opt" data-act="exam" data-v="'+esc(e)+'"><strong>'+esc(e)+'</strong><br><span class="note">'+l.length+' sawal &middot; '+uniq(l.map(x=>x.s)).length+' subject</span></button>'}).join("");
+  const ql=D.q.filter(x=>x.x===exam),subs=uniq(ql.map(x=>x.s));
+  let h='<button class="chip" data-act="exam" data-v="">&larr; Sabhi pariksha</button><h2>'+esc(exam)+'</h2>';
+  if(esub===null)return h+'<button class="opt" data-act="esub" data-v="Sab"><strong>Poora paper</strong><br><span class="note">'+ql.length+' sawal</span></button>'+subs.map(t=>'<button class="opt" data-act="esub" data-v="'+esc(t)+'">'+esc(t)+'<br><span class="note">'+ql.filter(x=>x.s===t).length+' sawal</span></button>').join("");
+  return h+'<button class="chip" data-act="esub" data-v="">&larr; Subject badlein</button> <span class="meta">'+(esub==="Sab"?"Poora paper":esc(esub))+'</span>'+vQ(true);
 }
 function vP(){
   let h=chips(uniq(D.p.map(x=>x.s)),psubj,"psubj");
@@ -87,13 +136,13 @@ function vP(){
 }
 function vC(){
   if(!D.c.length)return '<div class="card">Aaj ki current affairs jald aayengi.</div>';
-  return D.c.map(x=>'<div class="card ca"><div class="meta"><span class="tag">'+esc(x.k)+'</span>'+esc(x.d)+'</div><h3>'+esc(x.t)+'</h3><p style="margin:6px 0 0">'+esc(x.b)+'</p></div>').join("");
+  return D.c.map(x=>'<div class="card ca"><div class="meta"><span class="tag">'+esc(x.k)+'</span>'+esc(x.d)+'</div><h3>'+esc(x.t)+'</h3><p style="margin:6px 0 0;white-space:pre-line">'+esc(x.b)+'</p></div>').join("");
 }
 function vA(){
   let h='<div class="bar"><button class="primary" data-act="pub"'+(dirty?"":" disabled")+'>Badlav publish karein</button></div>';
   if(msg)h+='<div class="msg">'+esc(msg)+'</div>';
-  h+='<h2>Naye sawal (bulk)</h2><p class="note">Har line mein ek sawal: Sawal | Option A | Option B | Option C | Option D | Sahi option (1-4) | Explanation. Subject pehli line mein "#Polity" likhkar chunein.</p><textarea id="bulk" placeholder="#Polity&#10;Bharat ka pehla Rashtrapati kaun tha? | Rajendra Prasad | Nehru | Radhakrishnan | Patel | 1 | Dr. Rajendra Prasad pehle Rashtrapati the."></textarea><button class="primary" data-act="addq">Sawal jodein</button>';
-  h+='<h2>PDF se sawal nikaalein</h2><p class="note">Latest exam ki PDF chunein. AI usme se MCQ nikaalega, aap jaanch kar jodein. Scanned (photo wali) PDF mein text nahi hota, wo kaam nahi karegi.</p><input id="xf" type="file" accept="application/pdf"><input id="xs" placeholder="Subject (khali chhodein to AI khud tay karega)"><button class="primary" data-act="xrun">Sawal nikaalein</button>';
+  h+='<h2>Naye sawal (bulk)</h2><p class="note">Har line mein ek sawal: Sawal | Option A | Option B | Option C | Option D | Sahi option (1-4) | Explanation. Subject pehli line mein "#Polity" likhkar chunein.</p><input id="bx" placeholder="Pariksha ka naam (jaise MPPSC 2026 Prelims). Khali chhodein to normal abhyas mein jayega"><textarea id="bulk" placeholder="#Polity&#10;Bharat ka pehla Rashtrapati kaun tha? | Rajendra Prasad | Nehru | Radhakrishnan | Patel | 1 | Dr. Rajendra Prasad pehle Rashtrapati the."></textarea><button class="primary" data-act="addq">Sawal jodein</button>';
+  h+='<h2>PDF se sawal nikaalein</h2><p class="note">Latest exam ki PDF chunein. AI usme se MCQ nikaalega, aap jaanch kar jodein. Scanned (photo wali) PDF mein text nahi hota, wo kaam nahi karegi.</p><input id="xf" type="file" accept="application/pdf"><input id="xe" placeholder="Pariksha ka naam (jaise MPPSC 2026 Prelims)"><input id="xs" placeholder="Subject, ya kai subject comma se alag (khali chhodein to AI tay karega)"><button class="primary" data-act="xrun">Sawal nikaalein</button>';
   if(ext.length){h+='<div class="meta" style="margin-top:12px">'+ext.length+' sawal mile. Jawab zaroor jaanchein, phir jodein.</div>'+ext.map((x,i)=>'<div class="card"><label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" style="width:auto;margin:6px 0 0" data-act="xt" data-i="'+i+'"'+(x.on?" checked":"")+'><span><div class="meta">'+esc(x.s)+'</div>'+esc(x.q)+'<br><span class="note">'+x.o.map((t,k)=>(k===x.a?"\u2713 ":"")+esc(t)).join(" &middot; ")+'</span><br><span class="note">'+esc(x.e)+'</span></span></label></div>').join("")+'<button class="primary" data-act="xadd">Chune hue sawal jodein</button>';}
   h+='<h2>Nayi PDF</h2><input id="pt" placeholder="PDF ka naam"><input id="ps" placeholder="Subject (jaise Polity)"><input id="pd" placeholder="Chhota vivaran"><input id="pu" placeholder="PDF ka link (ya neeche se file chunein)"><input id="pf" type="file" accept="application/pdf"><button class="primary" data-act="addp">PDF jodein</button>';
   h+='<h2>Nayi current affairs</h2><input id="ck" placeholder="Category (National, Economy...)"><input id="ct" placeholder="Headline"><textarea id="cb" placeholder="Saransh (2-3 line)"></textarea><button class="primary" data-act="addc">Jodein</button>';
@@ -104,23 +153,32 @@ function vA(){
   return h;
 }
 function render(){
-  const tabs=[["q","Sawal"],["p","PDF"],["c","Current Affairs"]];if(admin)tabs.push(["a","Admin"]);
-  const v={q:vQ,p:vP,c:vC,a:vA}[tab]();
-  $("#root").innerHTML='<div class="wrap"><h1><span>Exam Saathi</span></h1><p class="sub">SSC, Railway, Banking, UPSC ki taiyari ke liye practice, PDF aur current affairs.</p>'+v+'</div><nav role="tablist">'+tabs.map(t=>'<button role="tab" data-act="tab" data-v="'+t[0]+'" aria-selected="'+(t[0]===tab)+'">'+t[1]+'</button>').join("")+'</nav>';
+  const tabs=[["h","<b>🏠</b>Home"],["x","<b>📋</b>Exams"],["q","<b>✏️</b>Practice"],["p","<b>📄</b>Notes"],["u","<b>👤</b>Profile"]];
+  const v={h:vH,u:vU,r:vR,q:vQ,x:vX,p:vP,c:vC,a:vA}[tab]();
+  $("#root").innerHTML='<div class="wrap">'+(tab==="h"?"":(tab==="c"||tab==="a"?'<button class="chip" data-act="go" data-v="h">← Home</button>':"")+'<h1><span>Exam Saathi</span></h1>')+v+'</div><nav role="tablist">'+tabs.map(t=>'<button role="tab" data-act="tab" data-v="'+t[0]+'" aria-selected="'+(t[0]===tab)+'">'+t[1]+'</button>').join("")+'</nav>';
 }
 const val=id=>($("#"+id)||{value:""}).value.trim();
 const act={
-  tab(d){tab=d.v;msg="";window.scrollTo(0,0);render()},
+  tab(d){tab=d.v;msg="";xn="";if(d.v==="q")startQ();if(d.v==="x"){exam=null;esub=null}window.scrollTo(0,0);render()},
   subj(d){subj=d.v;startQ();render()},
   psubj(d){psubj=d.v;render()},
-  pick(d){if(ans!==null)return;ans=+d.v;if(ans===pool[qi].a)score++;render()},
-  next(){qi++;ans=null;render()},
-  again(){startQ();render()},
+  pick(d){if(ans!==null)return;ans=+d.v;if(ans===pool[qi].a)score++;rec(ans===pool[qi].a);render()},
+  next(){qi++;ans=null;if(qi>=pool.length)fin();render()},
+  again(){(tab==="x"?startX:tab==="q"?startQ:()=>{qi=0;score=0;ans=null})();render()},
+  go(d){act.tab(d)},
+  daily(){mk("Today\u2019s Challenge",[...D.q].sort(()=>Math.random()-.5).slice(0,10));render()},
+  sub(d){const k=SUBJ[+d.i];mk(k[1]+" Practice",D.q.filter(x=>k[3].some(w=>x.s.includes(w))));render()},
+  search(){const t=val("sq").toLowerCase();if(!t)return;mk("Khoj: "+val("sq"),D.q.filter(x=>(x.q+" "+x.s+" "+(x.x||"")+" "+x.o.join(" ")).toLowerCase().includes(t)));render()},
+  ex(d){const n=d.v.toLowerCase().replace(/\s/g,""),f=uniq(D.q.filter(x=>x.x).map(x=>x.x)).find(e=>e.toLowerCase().replace(/\s/g,"").includes(n));tab="x";esub=null;exam=f||null;xn=f?"":d.v;window.scrollTo(0,0);render()},
+  theme(){const r=document.documentElement,dk=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=dk?"light":"dark"},
+  rst(){svS({t:0,sv:0,ok:0,st:0,last:""});render()},
+  exam(d){exam=d.v||null;esub=null;render()},
+  esub(d){esub=d.v||null;if(esub)startX();render()},
   del(d){D[d.k].splice(+d.i,1);dirty=true;render()},
   xt(d){ext[+d.i].on=!ext[+d.i].on;render()},
-  xadd(){const r=ext.filter(x=>x.on).map(({on,...z})=>z);D.q.unshift(...r);ext=[];dirty=dirty||r.length>0;msg=r.length+" sawal jude.";render()},
+  xadd(){const r=ext.filter(x=>x.on).map(({on,...z})=>z);(r.length&&r[0].x?D.q.push(...r):D.q.unshift(...r));ext=[];dirty=dirty||r.length>0;msg=r.length+" sawal jude.";render()},
   async xrun(){
-    const f=$("#xf").files[0],hint=val("xs");
+    const f=$("#xf").files[0],hint=val("xs"),xe=val("xe");
     if(!f){msg="Pehle PDF file chunein.";return render()}
     const sm=await claude.use("sample");
     if(!sm){msg="AI se sawal nikaalna abhi uplabdh nahi hai.";return render()}
@@ -131,15 +189,15 @@ const act={
       let all="";
       for(let n=1;n<=pdf.numPages;n++){const t=await (await pdf.getPage(n)).getTextContent();all+=t.items.map(i=>i.str).join(" ")+"\n"}
       if(all.replace(/\s/g,"").length<200){msg="Is PDF mein text nahi mila (shayad scanned hai).";return render()}
-      const chunks=[];for(let i=0;i<all.length&&chunks.length<12;i+=5500)chunks.push(all.slice(i,i+6000));
+      const chunks=[];for(let i=0;i<all.length&&chunks.length<20;i+=5500)chunks.push(all.slice(i,i+6000));
       const seen=new Set(),out=[];
       for(let k=0;k<chunks.length;k++){
         msg="Sawal nikal rahe hain... ("+(k+1)+"/"+chunks.length+")";render();
-        const r=await sm.json("Extract every complete multiple-choice question from the exam text below. Keep the original language (Hindi stays Hindi). Return ONLY a JSON array of objects {\"s\":subject,\"q\":question,\"o\":[exactly 4 options without labels],\"a\":index 0-3 of the correct option,\"e\":one-line explanation}. If the text has an answer key, use it; otherwise solve it yourself and start e with \"(AI anuman) \". Skip questions that are cut off or have fewer than 4 options. "+(hint?"Subject: "+hint+". ":"Infer the subject. ")+"If there are none, return [].\n\nTEXT:\n"+chunks[k]);
+        const r=await sm.json("Extract every complete multiple-choice question from the exam text below. Keep the original language (Hindi stays Hindi). Return ONLY a JSON array of objects {\"s\":subject,\"q\":question,\"o\":[exactly 4 options without labels],\"a\":index 0-3 of the correct option,\"e\":one-line explanation}. If the text has an answer key, use it; otherwise solve it yourself and start e with \"(AI anuman) \". Skip questions that are cut off or have fewer than 4 options. "+(hint.includes(",")?"Subject must be exactly one of: "+hint+". ":hint?"Subject: "+hint+". ":"Infer the subject using consistent standard subject names. ")+"If there are none, return [].\n\nTEXT:\n"+chunks[k]);
         (Array.isArray(r)?r:[]).forEach(x=>{
           if(!x||typeof x.q!=="string"||!Array.isArray(x.o)||x.o.length!==4||!(x.a>=0&&x.a<=3))return;
           const key=x.q.replace(/\s/g,"");if(seen.has(key))return;seen.add(key);
-          out.push({s:String(x.s||hint||"General"),q:x.q,o:x.o.map(String),a:x.a|0,e:String(x.e||""),on:true});
+          out.push({s:String(x.s||hint||"General"),q:x.q,o:x.o.map(String),a:x.a|0,e:String(x.e||""),x:xe||undefined,on:true});
         });
       }
       ext=out;msg=out.length?"":"Koi MCQ sawal nahi mila.";
@@ -147,13 +205,13 @@ const act={
     render();
   },
   addq(){
-    let s="General",n=0,bad=0;
+    let s="General",n=0,bad=0;const ex=val("bx");
     val("bulk").split("\n").forEach(l=>{
       l=l.trim();if(!l)return;
       if(l[0]==="#"){s=l.slice(1).trim()||s;return}
       const p=l.split("|").map(x=>x.trim());const a=parseInt(p[5],10);
       if(p.length<6||p.slice(1,5).some(x=>!x)||!(a>=1&&a<=4)){bad++;return}
-      D.q.unshift({s:s,q:p[0],o:p.slice(1,5),a:a-1,e:p[6]||""});n++;
+      const it={s:s,q:p[0],o:p.slice(1,5),a:a-1,e:p[6]||""};if(ex){it.x=ex;D.q.push(it)}else D.q.unshift(it);n++;
     });
     dirty=dirty||n>0;msg=n+" sawal jude"+(bad?", "+bad+" line galat format mein thi.":".");render();
   },
@@ -179,7 +237,7 @@ const act={
   }
 };
 $("#root").addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(b&&act[b.dataset.act])act[b.dataset.act](b.dataset)});
-startQ();render();
+startQ();render();$("#root").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="sq")act.search()});
 (window.claude?claude.use("user"):Promise.resolve(null)).then(u=>{if(u&&u.canEdit&&u.canEdit()){admin=true;render()}}).catch(()=>{});
 </script>
 </body>
