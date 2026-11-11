@@ -247,42 +247,51 @@ startQ();render();$("#root").addEventListener("keydown",e=>{if(e.key==="Enter"&&
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Saathi</title>
+    <title>Exam Saathi - इतिहास</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style id="css">
-        :root{--bg:#f3f5fb;--surface:#fff;--ink:#141824;--muted:#64748b;--primary:#2563eb;--border:#e2e8f0;--success:#16a34a;}
+        :root{--bg:#f3f5fb;--surface:#fff;--ink:#141824;--muted:#64748b;--primary:#2563eb;--border:#e2e8f0;--success:#16a34a;--error:#dc2626;}
         @media (prefers-color-scheme: dark){
-            :root{--bg:#0f1226;--surface:#1e293b;--ink:#f8fafc;--muted:#94a3b8;--primary:#3b82f6;--border:#334155;--success:#22c55e;}
+            :root{--bg:#0f1226;--surface:#1e293b;--ink:#f8fafc;--muted:#94a3b8;--primary:#3b82f6;--border:#334155;--success:#22c55e;--error:#ef4444;}
         }
         html{scroll-padding-top:env(safe-area-inset-top)}
         *{box-sizing:border-box}
         body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;padding-bottom:80px;}
         .wrap{max-width:700px;margin:0 auto;padding:16px;}
         h1{font-size:24px;font-weight:800;margin:8px 0 4px 0}
-        h2{font-size:18px;margin:20px 0 8px 0}
         .sub{color:var(--muted);margin:0 0 16px 0;font-size:14px;}
         
-        /* Quiz & Question Card Styles */
+        .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 20px; font-weight: 600; text-align: center; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        
+        /* Question Card Styles */
         .question-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .question-title { font-weight: 600; font-size: 16px; margin-bottom: 12px; color: var(--ink); line-height: 1.5; }
         .statement-list { margin: 10px 0 15px 20px; color: var(--muted); font-size: 14px; }
         .options-list { list-style-type: none; padding: 0; margin: 0; }
         .options-list li { padding: 10px 14px; margin: 8px 0; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-size: 14px; cursor: pointer; transition: 0.2s; }
-        .options-list li:hover { border-color: var(--primary); background: rgba(37,99,235,0.04); }
-        .answer-box { margin-top: 14px; padding: 12px; background: rgba(22,163,74,0.08); border-left: 4px solid var(--success); border-radius: 6px; font-size: 14px; }
+        .options-list li:hover:not(.disabled) { border-color: var(--primary); background: rgba(37,99,235,0.04); }
+        
+        .options-list li.correct { background: rgba(22,163,74,0.15); border-color: var(--success); color: var(--success); font-weight: 600; }
+        .options-list li.wrong { background: rgba(220,38,38,0.15); border-color: var(--error); color: var(--error); font-weight: 600; }
+        .options-list li.disabled { cursor: default; }
+
+        .answer-box { display: none; margin-top: 14px; padding: 12px; background: rgba(37,99,235,0.05); border-left: 4px solid var(--primary); border-radius: 6px; font-size: 14px; }
         .explanation { margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.4; }
     </style>
 </head>
 <body>
     <div class="wrap">
         <h1>Exam Saathi</h1>
-        <div class="sub">इतिहास (History) - सेट 1</div>
+        <div class="sub">विषय: इतिहास (History) – सेट 1 (Objective Practice)</div>
         
-        <div id="quiz-container"></div>
+        <div class="score-card" id="score-display">कुल प्रश्न: 8 | हल किए गए: 0 | सही स्कोर: 0</div>
+        
+        <!-- यहाँ इतिहास के सारे प्रश्न लोड होंगे -->
+        <div id="history-quiz-container"></div>
     </div>
 
     <script>
-        // इतिहास के सभी 8 प्रश्न आपके ऐप के डेटा फॉर्मेट में
+        // इतिहास के सभी 8 प्रश्नों का डेटा एरे
         const historyQuestions = [
           {
             "id": "111252",
@@ -396,9 +405,14 @@ startQ();render();$("#root").addEventListener("keydown",e=>{if(e.key==="Enter"&&
           }
         ];
 
-        // ऐप के स्क्रीन पर प्रश्नों को रेंडर करने का कोड
-        const container = document.getElementById('quiz-container');
-        historyQuestions.forEach((q) => {
+        let attempted = 0;
+        let score = 0;
+
+        const container = document.getElementById('history-quiz-container');
+        const scoreDisplay = document.getElementById('score-display');
+
+        // इतिहास के प्रश्नों को स्क्रीन पर जनरेट करने का फंक्शन
+        historyQuestions.forEach((q, index) => {
             let card = document.createElement('div');
             card.className = 'question-card';
             
@@ -409,16 +423,48 @@ startQ();render();$("#root").addEventListener("keydown",e=>{if(e.key==="Enter"&&
                 html += `</ul>`;
             }
             
-            html += `<ul class="options-list">`;
+            html += `<ul class="options-list" id="options-${index}">`;
             for(let key in q.options) {
-                html += `<li><strong>${key}.</strong> ${q.options[key]}</li>`;
+                html += `<li onclick="checkHistoryAnswer(${index}, '${key}', '${q.correct}')" id="opt-${index}-${key}"><strong>${key}.</strong> ${q.options[key]}</li>`;
             }
             html += `</ul>`;
             
-            html += `<div class="answer-box"><strong>सही उत्तर: ${q.correct}</strong><div class="explanation">${q.explanation}</div></div>`;
+            html += `<div class="answer-box" id="ans-${index}"><strong>सही उत्तर: ${q.correct}</strong><div class="explanation">${q.explanation}</div></div>`;
+            
             card.innerHTML = html;
             container.appendChild(card);
         });
+
+        // यूजर के क्लिक करने पर सही/गलत जांचने का लॉजिक
+        function checkHistoryAnswer(qIndex, selectedKey, correctKey) {
+            const optionsList = document.getElementById(`options-${qIndex}`);
+            if (optionsList.classList.contains('answered')) return;
+            optionsList.classList.add('answered');
+
+            attempted++;
+            
+            const selectedOpt = document.getElementById(`opt-${qIndex}-${selectedKey}`);
+            const correctOpt = document.getElementById(`opt-${qIndex}-${correctKey}`);
+            const ansBox = document.getElementById(`ans-${qIndex}`);
+
+            if (selectedKey === correctKey) {
+                selectedOpt.classList.add('correct');
+                score++;
+            } else {
+                selectedOpt.classList.add('wrong');
+                correctOpt.classList.add('correct');
+            }
+
+            const allOpts = optionsList.getElementsByTagName('li');
+            for (let opt of allOpts) {
+                opt.classList.add('disabled');
+            }
+
+            ansBox.style.display = 'block';
+            scoreDisplay.innerText = `कुल प्रश्न: ${historyQuestions.length} | हल किए गए: ${attempted} | सही स्कोर: ${score}`;
+        }
     </script>
 </body>
 </html>
+
+              
