@@ -286,3 +286,233 @@ startQ();render();$("#root").addEventListener("keydown",e=>{if(e.key==="Enter"&&
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPSI Pre 2026 - Quiz Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .question-box {
+            margin-bottom: 20px;
+        }
+        .question-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a252f;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+        }
+        .option-item {
+            background: #f8f9fa;
+            border: 1px solid #dcdde1;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 16px;
+        }
+        .option-item:hover {
+            background: #e1f5fe;
+            border-color: #03a9f4;
+        }
+        .option-item.correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+            font-weight: bold;
+        }
+        .option-item.wrong {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+        .solution-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4fd;
+            border-left: 5px solid #2196f3;
+            border-radius: 4px;
+            display: none;
+        }
+        .solution-box h4 {
+            margin: 0 0 8px 0;
+            color: #0d47a1;
+        }
+        .navigation-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        .btn {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #1a252f;
+        }
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2 id="quiz-title">Online Quiz Platform</h2>
+    <div id="quiz-body" class="loading">प्रश्न लोड हो रहे हैं... कृपया प्रतीक्षा करें।</div>
+    
+    <div class="navigation-btns" id="nav-buttons" style="display: none;">
+        <button id="prev-btn" class="btn" onclick="prevQuestion()" disabled>पिछला प्रश्न</button>
+        <button id="next-btn" class="btn" onclick="nextQuestion()">अगला प्रश्न</button>
+    </div>
+</div>
+
+<script>
+    let questionsData = [];
+    let currentIndex = 0;
+    let userAnswers = {};
+
+    // GitHub पर अपलोड की गई आपकी raw questions.json फाइल का लिंक यहाँ डालें
+    // उदाहरण: const jsonUrl = 'https://raw.githubusercontent.com/आपका-यूजरनेम/रिपॉजिटरी-नाम/main/questions.json';
+    const jsonUrl = 'questions.json'; // अगर फाइल इसी फोल्डर में है तो यह नाम काम करेगा
+
+    // JSON डेटा को फेच (Fetch) करना
+    fetch(jsonUrl)
+        .then(response => {
+            if (!response.ok) throw new Error("डेटा लोड करने में विफल");
+            return response.json();
+        })
+        .then(data => {
+            // यदि डेटा आपके दिए गए फॉर्मेट (obj with title & questions array) में है:
+            if (data.title) {
+                document.getElementById('quiz-title').innerText = data.title;
+                questionsData = data.questions;
+            } else {
+                questionsData = data; // अगर सिर्फ एरे (Array) है
+            }
+            loadQuestion(currentIndex);
+            document.getElementById('nav-buttons').style.display = 'flex';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('quiz-body').innerHTML = '<p style="color: red; text-align: center;">प्रश्न लोड करने में त्रुटि हुई। कृपया लिंक या फ़ाइल जाँचें।</p>';
+        });
+
+    function loadQuestion(index) {
+        const q = questionsData[index];
+        const quizBody = document.getElementById('quiz-body');
+
+        let optionsHtml = '';
+        for (let key in q.options) {
+            let optionClass = 'option-item';
+            // अगर पहले से उत्तर दिया जा चुका है, तो उसे हाइलाइट रखें
+            if (userAnswers[index] !== undefined) {
+                if (key === q.answer) {
+                    optionClass += ' correct';
+                } else if (key === userAnswers[index]) {
+                    optionClass += ' wrong';
+                }
+            }
+
+            optionsHtml += `<li class="${optionClass}" onclick="checkAnswer('${key}', '${q.answer}', ${index})">
+                <strong>${key}.</strong> ${q.options[key]}
+            </li>`;
+        }
+
+        let solutionDisplay = 'display: none;';
+        let solutionContent = '';
+        if (userAnswers[index] !== undefined) {
+            solutionDisplay = 'display: block;';
+            solutionContent = `
+                <h4>विस्तृत समाधान (Solution):</h4>
+                <p><strong>उत्तर:</strong> ${q.answer}</p>
+                <p><strong>सोल्यूशन:</strong> ${q.solution}</p>
+                ${q.explanation ? `<p><strong>व्याख्या:</strong> ${q.explanation}</p>` : ''}
+                ${q.extra ? `<p><strong>अतिरिक्त बिंदु:</strong> ${q.extra}</p>` : ''}
+            `;
+        }
+
+        quizBody.innerHTML = `
+            <div class="question-box">
+                <div class="question-title">प्रश्न ${index + 1} (${q.subject} - ${q.shift}): ${q.question}</div>
+                <ul class="options-list">
+                    ${optionsHtml}
+                </ul>
+                <div id="solution-${index}" class="solution-box" style="${solutionDisplay}">
+                    ${solutionContent}
+                </div>
+            </div>
+        `;
+
+        // बटन स्टेट मैनेज करना
+        document.getElementById('prev-btn').disabled = index === 0;
+        document.getElementById('next-btn').innerText = index === questionsData.length - 1 ? 'समाप्त' : 'अगला प्रश्न';
+    }
+
+    function checkAnswer(selectedKey, correctKey, index) {
+        // अगर छात्र पहले ही उत्तर दे चुका है, तो दोबारा क्लिक करने से रोकें
+        if (userAnswers[index] !== undefined) return;
+
+        userAnswers[index] = selectedKey;
+        loadQuestion(index); // पेज को दोबारा रेंडर करके सही/गलत और सॉल्यूशन दिखाएँ
+    }
+
+    function nextQuestion() {
+        if (currentIndex < questionsData.length - 1) {
+            currentIndex++;
+            loadQuestion(currentIndex);
+        } else {
+            alert('क्विज़ समाप्त हो गई है!');
+        }
+    }
+
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            loadQuestion(currentIndex);
+        }
+    }
+</script>
+
+</body>
+</html>
+
