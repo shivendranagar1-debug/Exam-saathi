@@ -92,7 +92,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let D=JSON.parse($("#data").textContent);
 let tab="m",xn="",rt="",subj="Sab",psubj="Sab",pool=[],qi=0,score=0,ans=null,admin=false,dirty=false,msg="";
-let ext=[],exam=null,esub=null,mode="sol",sol=[];
+let ext=[],exam=null,esub=null,mode="sol",sol=[],att={};
 const SUBJ=[["📖","सामान्य ज्ञान","GK",["सामान्य ज्ञान"]],["🔬","सामान्य विज्ञान","Science",["विज्ञान"]],["➗","गणित","Maths",["गणित"]],["🧩","तर्कशक्ति","Reasoning",["तर्क"]],["🔤","English","English",["English"]],["✍️","हिंदी","Hindi",["हिंदी","Hindi"]]];
 const EXS=[["🚆","Railway NTPC"],["📝","SSC CGL"],["🗂️","SSC CHSL"],["🛡️","SSC GD"],["👮","Delhi Police"],["🚓","MP Police"],["🏛️","MPESB"],["📚","Other Exams"]];
 function ST(){try{return Object.assign({t:0,sv:0,ok:0,st:0,last:""},JSON.parse(localStorage.getItem("es_st")||"{}"))}catch(e){return{t:0,sv:0,ok:0,st:0,last:""}}}
@@ -104,7 +104,17 @@ function vS(){const s=ST();return '<div class="g4">'+[[s.t,"टेस्ट द�
 function tog(){return '<div class="chips"><button class="chip" data-act="mode" data-v="sol" aria-pressed="'+(mode==="sol")+'">हल देखें</button><button class="chip" data-act="mode" data-v="quiz" aria-pressed="'+(mode==="quiz")+'">अभ्यास करें</button></div>'}
 function row(a,t,n){return '<button class="opt" data-act="'+a+'" data-v="'+esc(t)+'"><strong>'+esc(t)+'</strong><br><span class="note">'+n+' सवाल</span></button>'}
 function show(t,l){rt=t;if(mode==="sol"){sol=l;tab="s"}else mk(t,l)}
-function vSol(l){return l.length?l.map((x,i)=>'<div class="card"><div class="meta">'+(i+1)+' · '+esc(x.s)+(x.x?' · '+esc(x.x):'')+'</div><p class="q">'+esc(x.q)+'</p>'+x.o.map((t,k)=>'<div class="opt'+(k===x.a?' ok':'')+'" style="cursor:default">'+(k===x.a?'✓ ':'')+esc(t)+'</div>').join("")+'<div class="exp">'+esc(x.e||"")+'</div>'+(x.m?'<details><summary class="note" style="cursor:pointer">अतिरिक्त जानकारी</summary><div class="exp" style="white-space:pre-line">'+esc(x.m)+'</div></details>':'')+'</div>').join(""):'<div class="card">अभी कोई सवाल नहीं है।</div>'}
+function vSol(l){
+  if(!l.length)return '<div class="card">अभी कोई सवाल नहीं है।</div>';
+  const d=l.filter(x=>att[D.q.indexOf(x)]!==undefined).length;
+  return '<div class="row" style="margin-bottom:10px"><span class="note">'+d+' / '+l.length+' हल किए · पहले जवाब चुनें, फिर हल दिखेगा</span><button class="chip" data-act="rstAtt">दोबारा शुरू</button></div>'
+  +l.map((x,i)=>{
+    const k=D.q.indexOf(x),a=att[k],done=a!==undefined;
+    return '<div class="card"><div class="meta">'+(i+1)+' · '+esc(x.s)+(x.x?' · '+esc(x.x):'')+'</div><p class="q">'+esc(x.q)+'</p>'
+    +x.o.map((t,j)=>'<button class="opt'+(done?(j===x.a?' ok':(j===a?' bad':'')):'')+'" data-act="att" data-k="'+k+'" data-v="'+j+'"'+(done?' disabled':'')+'>'+(done&&j===x.a?'✓ ':'')+esc(t)+'</button>').join("")
+    +(done?'<div class="exp"><strong>'+(a<0?'सही उत्तर':(a===x.a?'सही जवाब':'गलत जवाब'))+'</strong> · '+esc(x.e||"")+'</div>'+(x.m?'<details><summary class="note" style="cursor:pointer">अतिरिक्त जानकारी</summary><div class="exp" style="white-space:pre-line">'+esc(x.m)+'</div></details>':''):'<button class="chip" data-act="att" data-k="'+k+'" data-v="-1">सीधे हल देखें</button>')
+    +'</div>'}).join("");
+}
 function vSs(){return '<button class="chip" data-act="go" data-v="h">← Home</button><h2>'+esc(rt)+'</h2>'+vSol(sol)}
 function logo(f,b,z){return '<svg viewBox="0 0 64 64" width="'+z+'" height="'+z+'" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="'+f+'"/><polygon points="32,8 34.6,13.6 40.7,14.3 36.2,18.4 37.4,24.4 32,21.4 26.6,24.4 27.8,18.4 23.3,14.3 29.4,13.6" fill="'+b+'"/><path d="M14 28c6-2 12-1 18 3 6-4 12-5 18-3v20c-6-2-12-1-18 3-6-4-12-5-18-3z" fill="'+b+'"/><path d="M32 31v20" stroke="'+f+'" stroke-width="2"/></svg>'}
 const SV='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
@@ -194,6 +204,8 @@ const act={
   next(){qi++;ans=null;if(qi>=pool.length)fin();render()},
   again(){(tab==="x"?startX:tab==="q"?startQ:()=>{qi=0;score=0;ans=null})();render()},
   go(d){act.tab(d)},
+  att(d){const k=+d.k,v=+d.v;if(att[k]!==undefined)return;att[k]=v;if(v>=0)rec(v===D.q[k].a);const y=window.scrollY;render();window.scrollTo(0,y)},
+  rstAtt(){att={};render()},
   mode(d){mode=d.v;if(mode==="quiz"&&tab==="x"&&esub)startX();render()},
   hs(d){show(d.v,D.q.filter(x=>x.x&&x.s===d.v));window.scrollTo(0,0);render()},
   he(d){show(d.v,D.q.filter(x=>x.x===d.v));window.scrollTo(0,0);render()},
